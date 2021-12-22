@@ -1,1 +1,1 @@
-# a-i-spec-example
+# api-spec-example
