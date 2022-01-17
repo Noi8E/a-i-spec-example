@@ -4,8 +4,8 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 
 public class TestBase {
-
     public final String HARD_COOKIE = "a578b8a0-72b1-4a15-91e8-65255bc54583";
+    public static final String baseUrl = "http://demowebshop.tricentis.com";
 
 
     @BeforeAll
