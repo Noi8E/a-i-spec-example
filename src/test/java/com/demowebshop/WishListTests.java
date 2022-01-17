@@ -1,7 +1,6 @@
 package com.demowebshop;
 
 
-
 import io.restassured.http.ContentType;
 import lombok.WishListResponse;
 import org.junit.jupiter.api.DisplayName;
@@ -26,18 +25,24 @@ public class WishListTests extends TestBase {
 
             WishListResponse wishListResponse =
 
-                given()
-                        .spec(request)
-                        .when()
-                        .post("/addproducttocart/details/2/2")
-                        .then()
-                        .spec(responseSpec)
-                        .log().body()
-                        .extract().as(WishListResponse.class);
+                    given()
+                            .spec(request)
+                            .when()
+                            .post("/addproducttocart/details/2/2")
+                            .then()
+                            .spec(responseSpec)
+                            .log().body()
+                            .extract().as(WishListResponse.class);
             assertThat(wishListResponse.getSuccess(), is(FALSE));
             assertThat(wishListResponse.getMessage().get(1), is("Enter valid recipient email"));
             assertThat(wishListResponse.getMessage().get(0), is("Enter valid recipient name"));
-    });
+        });
+
+    }
+
+    @Test
+    @DisplayName("Can add Virtual Gift Card to wishist")
+    void canAddGiftCardToWishList() {
 
         step("try add with required fields", () ->
                 given()
@@ -53,7 +58,7 @@ public class WishListTests extends TestBase {
                         .log().body()
                         .body("success", is(true))
                         .body("message", is("The product has been added to your <a href=\"/wishlist\">wishlist</a>"))
-                );
+        );
 
     }
 }

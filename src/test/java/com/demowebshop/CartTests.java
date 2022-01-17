@@ -1,6 +1,6 @@
 package com.demowebshop;
 
-import lombok.LombokCartResponse;
+import lombok.CartResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
@@ -14,7 +14,6 @@ import static io.restassured.RestAssured.given;
 import static java.lang.Boolean.TRUE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.hasItem;
 
 public class CartTests extends TestBase {
 
@@ -40,7 +39,7 @@ public class CartTests extends TestBase {
     @DisplayName("Тест с использзованием lombok")
     void cartTestWithLombok() {
         step("can added item with lombok", () -> {
-            LombokCartResponse lombokCartResponse =
+            CartResponse cartResponse =
                     given()
                             .spec(request)
                             .when()
@@ -48,25 +47,8 @@ public class CartTests extends TestBase {
                             .then()
                             .spec(responseSpec)
                             .log().body()
-                            .extract().as(LombokCartResponse.class);
-            assertThat(lombokCartResponse.getSuccess(), is(TRUE));
-
-        });
-    }
-
-    @Test
-    @DisplayName("Тест с использованием Groovy")
-    void cartTestWithGroovy() {
-        step("can added item with Groovy", () -> {
-            given()
-                    .spec(request)
-                    .when()
-                    .post("/addproducttocart/details/14/1")
-                    .then()
-                    .log().body()
-                    //.body("findAll { it.updatetopcartsectionhtml == '1' }", hasItem("(1)"));
-                    .body("equals(\"updatetopcartsectionhtml\")", hasItem("(1)"));
-
+                            .extract().as(CartResponse.class);
+            assertThat(cartResponse.getSuccess(), is(TRUE));
 
         });
     }
