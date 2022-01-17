@@ -71,6 +71,7 @@ public class CartTests extends TestBase {
 
             step("open logo for create browser-session", () ->
                     open(baseUrl + "/Themes/DefaultClean/Content/images/logo.png")
+
             );
 
 

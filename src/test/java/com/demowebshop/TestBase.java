@@ -11,6 +11,7 @@ public class TestBase {
     @BeforeAll
     static void setUp() {
         Configuration.browserSize = "600x600";
+        Configuration.timeout = 30000;
 
     }
 
