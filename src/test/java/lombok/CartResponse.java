@@ -1,8 +1,6 @@
 package lombok;
 
 
-
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 

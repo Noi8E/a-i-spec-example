@@ -11,7 +11,6 @@ public class CartResponse {
     private String updatetopcartsectionhtml;
     private String updateflyoutcartsectionhtml;
 
-
     public Boolean getSuccess() {
         return success;
     }

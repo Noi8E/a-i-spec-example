@@ -2,6 +2,7 @@ package lombok;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
 @Data
@@ -9,6 +10,7 @@ import java.util.List;
 
 public class WishListResponse {
     private Boolean success;
-    @Singular private List<String> message;
+    @Singular
+    private List<String> message;
 
 }

@@ -1,4 +1,4 @@
-package com.demowebshop;
+package specification;
 
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;

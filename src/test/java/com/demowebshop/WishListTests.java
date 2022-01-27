@@ -1,13 +1,12 @@
 package com.demowebshop;
 
 
-import io.restassured.http.ContentType;
 import lombok.WishListResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static com.demowebshop.Specs.request;
-import static com.demowebshop.Specs.responseSpec;
+import static specification.Specs.request;
+import static specification.Specs.responseSpec;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static java.lang.Boolean.FALSE;
@@ -16,13 +15,10 @@ import static org.hamcrest.Matchers.*;
 
 public class WishListTests extends TestBase {
 
-
     @Test
     @DisplayName("Can add item to Wishlist")
     void canAddItemToWishList() {
-
         step("try add Virtual Gift Card wo names", () -> {
-
             WishListResponse wishListResponse =
 
                     given()
@@ -37,13 +33,11 @@ public class WishListTests extends TestBase {
             assertThat(wishListResponse.getMessage().get(1), is("Enter valid recipient email"));
             assertThat(wishListResponse.getMessage().get(0), is("Enter valid recipient name"));
         });
-
     }
 
     @Test
     @DisplayName("Can add Virtual Gift Card to wishist")
     void canAddGiftCardToWishList() {
-
         step("try add with required fields", () ->
                 given()
                         .contentType("application/x-www-form-urlencoded; charset=UTF-8")
@@ -59,6 +53,5 @@ public class WishListTests extends TestBase {
                         .body("success", is(true))
                         .body("message", is("The product has been added to your <a href=\"/wishlist\">wishlist</a>"))
         );
-
     }
 }

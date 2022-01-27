@@ -7,8 +7,8 @@ import org.openqa.selenium.Cookie;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static com.demowebshop.Specs.request;
-import static com.demowebshop.Specs.responseSpec;
+import static specification.Specs.request;
+import static specification.Specs.responseSpec;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static java.lang.Boolean.TRUE;
@@ -73,13 +73,9 @@ public class CartTests extends TestBase {
                     open(baseUrl + "/Themes/DefaultClean/Content/images/logo.png")
 
             );
-
-
             step("Inject cookie", () ->
                     getWebDriver().manage().addCookie(new Cookie("Nop.customer", HARD_COOKIE))
             );
-
-
         });
 
         step("Some UI Action", () -> {
