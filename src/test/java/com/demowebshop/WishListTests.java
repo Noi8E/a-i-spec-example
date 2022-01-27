@@ -41,9 +41,7 @@ public class WishListTests extends TestBase {
         step("try add with required fields", () ->
                 given()
                         .contentType("application/x-www-form-urlencoded; charset=UTF-8")
-                        .body("giftcard_2.RecipientName=Test&giftcard_2.RecipientEmail=test@test.ru" +
-                                "&giftcard_2.SenderName=Test2&giftcard_2.SenderEmail=test2@test.ru&" +
-                                "giftcard_2.Message=TestMessage&addtocart_2.EnteredQuantity=1")
+                        .body(wishListBody)
                         .log().all()
                         .when()
                         .post("http://demowebshop.tricentis.com/addproducttocart/details/2/2")

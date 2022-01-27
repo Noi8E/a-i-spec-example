@@ -54,7 +54,7 @@ public class CartTests extends TestBase {
     @Test
     @DisplayName("Можем добавить товар в корзину с сохранением сессии")
     void canAddItemToCartWithCookie() {
-        step("Added item to cart With cookie", () -> {
+        step("Запрос на добавление товара для существующго юзера", () -> {
             given()
                     .spec(cartRequestWithCookie)
                     .when()
