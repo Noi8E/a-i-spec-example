@@ -9,7 +9,6 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
-import static java.lang.Boolean.TRUE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static specification.Specs.*;
@@ -47,7 +46,7 @@ public class CartTests extends TestBase {
                             .spec(responseSpec)
                             .log().body()
                             .extract().as(CartResponse.class);
-            assertThat(cartResponse.getSuccess(), is(TRUE));
+            assertThat(cartResponse.getSuccess(), is(true));
         });
     }
 
