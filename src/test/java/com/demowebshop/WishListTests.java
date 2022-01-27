@@ -5,13 +5,13 @@ import lombok.WishListResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static specification.Specs.request;
-import static specification.Specs.responseSpec;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static java.lang.Boolean.FALSE;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
+import static specification.Specs.cartRequest;
+import static specification.Specs.responseSpec;
 
 public class WishListTests extends TestBase {
 
@@ -22,7 +22,7 @@ public class WishListTests extends TestBase {
             WishListResponse wishListResponse =
 
                     given()
-                            .spec(request)
+                            .spec(cartRequest)
                             .when()
                             .post("/addproducttocart/details/2/2")
                             .then()

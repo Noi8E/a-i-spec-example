@@ -7,13 +7,12 @@ import org.openqa.selenium.Cookie;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static specification.Specs.request;
-import static specification.Specs.responseSpec;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static java.lang.Boolean.TRUE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static specification.Specs.*;
 
 public class CartTests extends TestBase {
 
@@ -21,9 +20,9 @@ public class CartTests extends TestBase {
     @DisplayName("Можем добавить товар в корзину без куки в запросе")
     void canAddItemToCartWOCookie() {
 
-        step("Added item to cart WO cookie", () ->
+        step("Добавление товара без куки", () ->
                 given()
-                        .spec(request)
+                        .spec(cartRequest)
                         .when()
                         .post("/addproducttocart/details/14/1")
                         .then()
@@ -36,12 +35,12 @@ public class CartTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Тест с использзованием lombok")
+    @DisplayName("Добавление товара в корзину  без куки (lombok)")
     void cartTestWithLombok() {
-        step("can added item with lombok", () -> {
+        step("Отправка запроса с помощью lombok", () -> {
             CartResponse cartResponse =
                     given()
-                            .spec(request)
+                            .spec(cartRequest)
                             .when()
                             .post("/addproducttocart/details/14/1")
                             .then()
@@ -49,7 +48,6 @@ public class CartTests extends TestBase {
                             .log().body()
                             .extract().as(CartResponse.class);
             assertThat(cartResponse.getSuccess(), is(TRUE));
-
         });
     }
 
@@ -58,8 +56,7 @@ public class CartTests extends TestBase {
     void canAddItemToCartWithCookie() {
         step("Added item to cart With cookie", () -> {
             given()
-                    .spec(request)
-                    .cookie(HARD_COOKIE)
+                    .spec(cartRequestWithCookie)
                     .when()
                     .post("/addproducttocart/details/14/1")
                     .then()
@@ -71,13 +68,11 @@ public class CartTests extends TestBase {
 
             step("open logo for create browser-session", () ->
                     open(baseUrl + "/Themes/DefaultClean/Content/images/logo.png")
-
             );
             step("Inject cookie", () ->
-                    getWebDriver().manage().addCookie(new Cookie("Nop.customer", HARD_COOKIE))
+                    getWebDriver().manage().addCookie(new Cookie("Nop.customer", "a578b8a0-72b1-4a15-91e8-65255bc54583"))
             );
         });
-
         step("Some UI Action", () -> {
         });
     }
