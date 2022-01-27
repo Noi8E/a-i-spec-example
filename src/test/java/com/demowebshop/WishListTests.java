@@ -16,9 +16,9 @@ import static specification.Specs.responseSpec;
 public class WishListTests extends TestBase {
 
     @Test
-    @DisplayName("Can add item to Wishlist")
+    @DisplayName("Нельзя добавить товар в Вишлист без имени реципиента")
     void canAddItemToWishList() {
-        step("try add Virtual Gift Card wo names", () -> {
+        step("Отправить запрос на добавление товара в вишлист без имени реципиента", () -> {
             WishListResponse wishListResponse =
 
                     given()
@@ -36,9 +36,9 @@ public class WishListTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Can add Virtual Gift Card to wishist")
+    @DisplayName("Товар можно добавить в ВишЛист если все параметры указаны верно")
     void canAddGiftCardToWishList() {
-        step("try add with required fields", () ->
+        step("Отправить валидный запрос", () ->
                 given()
                         .contentType("application/x-www-form-urlencoded; charset=UTF-8")
                         .body(wishListBody)
